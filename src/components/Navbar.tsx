@@ -6,7 +6,7 @@ const Navbar = () => {
 
   return (
     <nav className="navbar">
-      <h2 className="logo">🎬 CineFlix</h2>
+      <h2 className="logo">🎬 MovieBox</h2>
 
       <div className="nav-links">
         <NavLink
