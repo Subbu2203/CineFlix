@@ -1,0 +1,202 @@
+/* ===== RESET ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ===== BODY ===== */
+body {
+  background-color: #0f0f0f;
+  color: white;
+  font-family: Arial, sans-serif;
+}
+
+/* ===== NAVBAR ===== */
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 40px;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(10px);
+}
+
+.logo {
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.nav-links a {
+  margin-left: 30px;
+  text-decoration: none;
+  color: #bbb;
+  font-size: 16px;
+}
+
+.nav-links a.active {
+  color: white;
+  border-bottom: 2px solid red;
+}
+
+.nav-links a:hover {
+  color: white;
+}
+
+/* ===== HOME ===== */
+.home-container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 20px;
+}
+
+/* ===== SEARCH ===== */
+.search-input {
+  width: 100%;
+  max-width: 400px;
+  padding: 10px 15px;
+  margin: 20px auto;
+  display: block;
+  border-radius: 25px;
+  border: none;
+  outline: none;
+  font-size: 16px;
+}
+
+/* ===== MOVIE GRID ===== */
+.movies-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 24px;
+  padding: 20px;
+}
+
+/* ===== MOVIE CARD ===== */
+.movie-card {
+  background: #111;
+  border-radius: 14px;
+  overflow: hidden;
+  text-decoration: none;
+  color: white;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.movie-card:hover {
+  transform: scale(1.06);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+}
+
+.movie-card img {
+  width: 100%;
+  border-radius: 14px;
+  height: 330px;
+  object-fit: cover;
+}
+
+.movie-card h3 {
+  font-size: 0.9rem;
+  margin: 8px;
+}
+
+.movie-card p {
+  font-size: 0.8rem;
+  color: #f5c518;
+  margin: 0 8px 10px;
+}
+
+/* ===== SKELETON ===== */
+.skeleton-card {
+  height: 280px;
+  border-radius: 14px;
+  background: linear-gradient(
+    90deg,
+    #222 25%,
+    #333 37%,
+    #222 63%
+  );
+  background-size: 400% 100%;
+  animation: shimmer 1.4s infinite;
+}
+
+@keyframes shimmer {
+  0% { background-position: -400px 0; }
+  100% { background-position: 400px 0; }
+}
+
+/* ===== MOVIE DETAILS ===== */
+.detail-container {
+  display: flex;
+  gap: 40px;
+  padding: 40px;
+}
+
+.detail-container img {
+  width: 300px;
+  border-radius: 16px;
+}
+
+.movie-info h1 {
+  font-size: 2.5rem;
+  margin-bottom: 12px;
+}
+
+.movie-info p {
+  line-height: 1.6;
+  opacity: 0.85;
+}
+
+/* ===== BUTTONS ===== */
+button {
+  cursor: pointer;
+}
+
+
+
+
+
+/* ===== MOVIE CARD WRAPPER ===== */
+.movie-card-wrapper {
+  position: relative;
+}
+
+/* ===== HEART BUTTON ===== */
+.heart-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  color: red;
+
+  background: rgba(0, 0, 0, 0.7);
+  border: none;
+  border-radius: 50%;
+  padding: 6px 8px;
+
+  font-size: 16px;
+  cursor: pointer;
+  z-index: 5;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.heart-btn.added {
+  background: hsla(300, 19%, 95%, 0.851); /* 🔥 Netflix red but transparent */
+}
+
+
+
+
+/* ===== WATCHLIST GRID ===== */
+.watchlist {
+  max-width: 1200px;
+  margin: auto;
+  padding: 30px;
+}
+
+.watchlist .movies-grid {
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+}

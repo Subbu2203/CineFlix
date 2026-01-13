@@ -1,0 +1,48 @@
+.movie-info p {
+
+  line-height: 1.7;
+}
+
+.meta {
+  display: flex;
+  gap: 12px;
+  margin: 10px 0 20px;
+  opacity: 0.8;
+}
+
+.actions {
+  display: flex;
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.primary {
+  background: #e50914;
+  padding: 10px 20px;
+  border-radius: 8px;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.secondary {
+  background: transparent;
+  border: 1px solid #444;
+  padding: 10px 20px;
+  border-radius: 8px;
+  color: white;
+}
+
+.divider {
+  width: 60px;
+  height: 4px;
+  background: #e50914;
+  margin: 12px 0;
+}
+.detail-container {
+  display: flex;
+  gap: 40px;
+  padding: 60px;
+  min-height: 100vh;
+  background: #0f0f0f;
+}
