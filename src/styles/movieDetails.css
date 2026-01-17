@@ -46,3 +46,156 @@
   min-height: 100vh;
   background: #0f0f0f;
 }
+
+
+.similar-section {
+  margin-top: 60px;
+}
+
+.similar-section h2 {
+  font-size: 1.4rem;
+  margin-bottom: 16px;
+}
+
+.similar-grid {
+  display: flex;
+  gap: 18px;
+}
+
+.similar-grid img {
+  width: 150px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.similar-grid img:hover {
+  transform: scale(1.08);
+  box-shadow: 0 10px 30px rgba(255, 0, 0, 0.4);
+}
+
+
+
+
+/*==More like this*/
+.detail-container {
+  display: flex;
+  flex-wrap: wrap; /* allows stacking on small screens */
+  gap: 2rem;
+  padding: 2rem;
+  color: white;
+  background-color: #0f0f0f;
+}
+
+/* LEFT POSTER */
+.poster {
+  flex: 0 0 300px; /* fixed width */
+  max-width: 350px;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+/* RIGHT INFO */
+.movie-info {
+  flex: 1 1 500px; /* take remaining space */
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* Divider under title */
+.divider {
+  width: 50px;
+  height: 4px;
+  background-color: red;
+  margin: 0.5rem 0;
+  border-radius: 2px;
+}
+
+.meta span {
+  margin-right: 1rem;
+  font-size: 0.9rem;
+  color: #ccc;
+}
+
+.overview {
+  line-height: 1.5;
+  font-size: 1rem;
+}
+
+.actions {
+  margin-top: 1rem;
+  display: flex;
+  gap: 1rem;
+}
+
+button.primary {
+  background-color: red;
+  color: white;
+  padding: 0.5rem 1.2rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+button.secondary {
+  background-color: transparent;
+  color: white;
+  padding: 0.5rem 1.2rem;
+  border: 1px solid #fff;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+/* SIMILAR MOVIES */
+.similar-section {
+  width: 100%; /* full width below poster+info */
+  margin-top: 2rem;
+}
+
+.similar-section h2 {
+  margin-bottom: 1rem;
+}
+
+.similar-grid {
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  padding-bottom: 1rem;
+}
+
+.similar-grid img {
+  width: 150px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.similar-grid img:hover {
+  transform: scale(1.05);
+}
+
+/* Scrollbar styling */
+.similar-grid::-webkit-scrollbar {
+  height: 8px;
+}
+
+.similar-grid::-webkit-scrollbar-thumb {
+  background-color: #555;
+  border-radius: 4px;
+}
+
+/* Responsive: stack poster + info on small screens */
+@media (max-width: 768px) {
+  .detail-container {
+    flex-direction: column;
+    align-items: center;
+  }
+  .poster {
+    flex: 0 0 auto;
+  }
+  .movie-info {
+    flex: 1 1 auto;
+  }
+}

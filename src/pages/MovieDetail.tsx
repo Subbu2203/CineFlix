@@ -8,10 +8,14 @@ import "../styles/movieDetails.css";
 const MovieDetailPage = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const { addToWatchlist } = useWatchlist(); // ✅ CONTEXT
-  const [movie, setMovie] = useState<MovieDetail | null>(null);
+  const { addToWatchlist } = useWatchlist();
 
+  const [movie, setMovie] = useState<MovieDetail | null>(null);
+  const [similarMovies, setSimilarMovies] = useState<any[]>([]);
+
+  // ✅ ONE useEffect – ALL API calls here
   useEffect(() => {
+    // Movie details
     axios
       .get(`https://api.themoviedb.org/3/movie/${id}`, {
         params: {
@@ -19,21 +23,32 @@ const MovieDetailPage = () => {
         },
       })
       .then((res) => setMovie(res.data))
-      .catch((err) => console.error(err));
+      .catch(console.error);
+
+    // 🔥 Similar movies
+    axios
+      .get(`https://api.themoviedb.org/3/movie/${id}/similar`, {
+        params: {
+          api_key: import.meta.env.VITE_TMDB_API_KEY,
+        },
+      })
+      .then((res) => setSimilarMovies(res.data.results.slice(0, 6)))
+      .catch(console.error);
   }, [id]);
 
+  // ✅ return AFTER all hooks
   if (!movie) return <h2 className="loading">Loading...</h2>;
 
   return (
     <div className="detail-container">
-      {/* LEFT : POSTER */}
+      {/* LEFT */}
       <img
         className="poster"
         src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
         alt={movie.title}
       />
 
-      {/* RIGHT : DETAILS */}
+      {/* RIGHT */}
       <div className="movie-info">
         <h1>{movie.title}</h1>
 
@@ -41,26 +56,16 @@ const MovieDetailPage = () => {
 
         <div className="meta">
           <span>⭐ {movie.vote_average.toFixed(1)}</span>
-
+          <span>• {movie.release_date?.slice(0, 4) || "N/A"}</span>
           <span>
-            • {movie.release_date ? movie.release_date.slice(0, 4) : "N/A"}
-          </span>
-
-          <span>
-            • {movie.genres && movie.genres.length > 0
-              ? movie.genres.map((g) => g.name).join(", ")
-              : "No genres"}
+            • {movie.genres?.map((g) => g.name).join(", ") || "No genres"}
           </span>
         </div>
 
         <p className="overview">{movie.overview}</p>
 
         <div className="actions">
-          {/* ✅ FIXED BUTTON */}
-          <button
-            className="primary"
-            onClick={() => addToWatchlist(movie)}
-          >
+          <button className="primary" onClick={() => addToWatchlist(movie)}>
             ❤️ Add to Watchlist
           </button>
 
@@ -68,6 +73,24 @@ const MovieDetailPage = () => {
             ⬅ Back
           </button>
         </div>
+
+        {/* 🔥 MORE LIKE THIS */}
+        {similarMovies.length > 0 && (
+          <div className="similar-section">
+            <h2>More Like This</h2>
+
+            <div className="similar-grid">
+              {similarMovies.map((m) => (
+                <img
+                  key={m.id}
+                  src={`https://image.tmdb.org/t/p/w300${m.poster_path}`}
+                  alt={m.title}
+                  onClick={() => navigate(`/movie/${m.id}`)}
+                />
+              ))}
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

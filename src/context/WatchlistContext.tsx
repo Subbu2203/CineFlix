@@ -30,7 +30,7 @@ export const WatchlistProvider = ({ children }: { children: React.ReactNode }) =
 
   const addToWatchlist = (movie: Movie) => {
     if (watchlist.some((m) => m.id === movie.id)) {
-      alert("Movie already in Watchlist ❤️");
+      toast("Movie already in Watchlist ❤️");
       return;
     }
     setWatchlist([...watchlist, movie]);

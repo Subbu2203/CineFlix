@@ -1,10 +1,11 @@
 import type { Movie } from "../types/movie";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { useWatchlist } from "../context/WatchlistContext";
 
 const MovieCard = ({ movie }: { movie: Movie }) => {
   const { toggleWatchlist, watchlist } = useWatchlist();
+  const navigate = useNavigate();
 
   const isAdded = watchlist.some((m) => m.id === movie.id);
 
@@ -16,7 +17,7 @@ const MovieCard = ({ movie }: { movie: Movie }) => {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4 }}
     >
-      {/* CARD CONTENT */}
+      {/* CARD CLICK → MOVIE DETAIL */}
       <Link to={`/movie/${movie.id}`} className="movie-card">
         <img
           src={`https://image.tmdb.org/t/p/w300${movie.poster_path}`}
@@ -29,17 +30,26 @@ const MovieCard = ({ movie }: { movie: Movie }) => {
       {/* ❤️ WATCHLIST BUTTON */}
       <button
         className={`heart-btn ${isAdded ? "added" : ""}`}
-       
         onClick={(e) => {
-          e.stopPropagation();
           e.preventDefault();
+          e.stopPropagation();
           toggleWatchlist(movie);
         }}
       >
         {isAdded ? "❤️" : "🤍"}
       </button>
 
-      
+      {/* ▶ WATCH NOW BUTTON */}
+      <button
+        className="watch-btn"
+        onClick={(e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          navigate(`/movie/${movie.id}`);
+        }}
+      >
+        ▶ Watch Now
+      </button>
     </motion.div>
   );
 };
